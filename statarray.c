@@ -25,12 +25,14 @@ int binSearch(int* ar, int size, int el) {
 	if (ar[size >> 1] == el) {
 		return (size >> 1);
 	}
-	if (el > ar[size-1] | el < ar[0]) {
+	
+	if (size == 1) {
 		return -1;
 	}
 
 	if (el > ar[size >> 1]) {
-		return binSearch(&ar[size >> 1], size - (size >> 1), el) + (size >> 1); 
+		int bs = binSearch(&ar[size >> 1], size - (size >> 1), el);
+		return bs + (size >> 1)*(bs != -1); 
 	}
 
 	if (ar[size >> 1] > el) {
